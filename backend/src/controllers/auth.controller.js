@@ -1,7 +1,7 @@
 import { Usuario } from "../models/Usuario.js";
 import bcrypt from "bcrypt";
 import { createAccessToken, createRefreshToken } from "../libs/jwt.js";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 // Iniciar sesión
 export const login = async (req, res) => {
@@ -28,8 +28,9 @@ export const login = async (req, res) => {
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: true,
-      sameSite: "Strict",
+      secure: false,
+      sameSite: "Lax",
+      path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -169,8 +170,9 @@ export const logout = (req, res) => {
   try {
     res.clearCookie("refreshToken", {
       httpOnly: true,
-      secure: true,
-      sameSite: "Strict",
+      secure: false,
+      sameSite: "Lax",
+      path: "/",
     });
 
     res.json({ message: "Sesión cerrada correctamente" });
