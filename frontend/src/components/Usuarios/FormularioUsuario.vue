@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <div class="container-fluid mt-3">
+  <div class="cont-fluid mt-3">
     <ul class="nav nav-tabs">
       <li class="nav-item">
         <router-link to="/usuarios" class="nav-link">Listado de usuarios</router-link>
@@ -10,7 +10,7 @@
         </a>
       </li>
     </ul>
-    <div class="contenedor my-4 shadow p-4 rounded">
+    <div class="contenedor-card my-4 shadow p-4 rounded">
       <h1 class="text-center">{{ modoEdicion ? 'Actualizar usuario' : 'Crear usuario' }}</h1>
 
       <form @submit.prevent="handleRegister">
@@ -71,6 +71,7 @@
     </div>
   </div>
   <Alertas ref="alertasRef" />
+  <Footer />
 </template>
 
 <script>
@@ -79,10 +80,12 @@ import { useRoute, useRouter } from 'vue-router';
 import Navbar from "../Navbar/Navbar.vue";
 import Alertas from '../Alertas/Alertas.vue';
 import { crearUsuario, actualizarUsuario, obtenerUsuarioPorId } from "../../services/usuarioService.js";
+import Footer from '../Footer/Footer.vue';
 
 export default {
   components: {
     Navbar,
+    Footer,
     Alertas
   },
   setup() {
